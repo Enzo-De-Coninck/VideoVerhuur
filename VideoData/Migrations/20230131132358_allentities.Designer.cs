@@ -12,7 +12,7 @@ using VideoData.Models;
 namespace VideoData.Migrations
 {
     [DbContext(typeof(VideoVerhuurDbContext))]
-    [Migration("20230131130930_allentities")]
+    [Migration("20230131132358_allentities")]
     partial class allentities
     {
         /// <inheritdoc />
@@ -52,14 +52,9 @@ namespace VideoData.Migrations
                     b.Property<int>("UitVoorraad")
                         .HasColumnType("int");
 
-                    b.Property<int?>("VerhuringVerhuurId")
-                        .HasColumnType("int");
-
                     b.HasKey("FilmId");
 
                     b.HasIndex("GenreId");
-
-                    b.HasIndex("VerhuringVerhuurId");
 
                     b.ToTable("Films");
                 });
@@ -146,6 +141,8 @@ namespace VideoData.Migrations
 
                     b.HasKey("VerhuurId");
 
+                    b.HasIndex("FilmId");
+
                     b.HasIndex("KlantId");
 
                     b.ToTable("Verhuringen");
@@ -159,24 +156,31 @@ namespace VideoData.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("VideoData.Models.Verhuring", "Verhuring")
-                        .WithMany("Films")
-                        .HasForeignKey("VerhuringVerhuurId");
-
                     b.Navigation("Genre");
-
-                    b.Navigation("Verhuring");
                 });
 
             modelBuilder.Entity("VideoData.Models.Verhuring", b =>
                 {
+                    b.HasOne("VideoData.Models.Film", "Film")
+                        .WithMany("Verhuringen")
+                        .HasForeignKey("FilmId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("VideoData.Models.Klant", "Klant")
                         .WithMany("Verhuring")
                         .HasForeignKey("KlantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Film");
+
                     b.Navigation("Klant");
+                });
+
+            modelBuilder.Entity("VideoData.Models.Film", b =>
+                {
+                    b.Navigation("Verhuringen");
                 });
 
             modelBuilder.Entity("VideoData.Models.Genre", b =>
@@ -187,11 +191,6 @@ namespace VideoData.Migrations
             modelBuilder.Entity("VideoData.Models.Klant", b =>
                 {
                     b.Navigation("Verhuring");
-                });
-
-            modelBuilder.Entity("VideoData.Models.Verhuring", b =>
-                {
-                    b.Navigation("Films");
                 });
 #pragma warning restore 612, 618
         }

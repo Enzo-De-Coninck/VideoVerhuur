@@ -15,7 +15,7 @@ namespace VideoData.Models
         public int UitVoorraad { get; set; }
         public decimal Prijs { get; set; }
         public int TotaalVerhuurd { get; set; }
-        public Genre Genre { get; set; }
-        public Verhuring? Verhuring { get; set; }
+        public Genre Genre { get; set; } = null!;
+        public IEnumerable<Verhuring> Verhuringen { get; set; } = null!;
     }
 }

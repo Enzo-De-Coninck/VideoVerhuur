@@ -15,7 +15,7 @@ namespace VideoData.Models
         public int FilmId { get; set; }
         public DateTime VerhuurDatum { get; set; }
 
-        public IEnumerable<Film> Films { get; set; }
+        public Film Film { get; set; }
         public Klant Klant { get; set; }
     }
 }
