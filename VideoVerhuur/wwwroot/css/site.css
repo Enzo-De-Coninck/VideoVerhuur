@@ -16,3 +16,8 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+input, textarea, select {
+    display: block;
+    margin-bottom: 5px;
+}

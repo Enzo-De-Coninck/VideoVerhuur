@@ -1,0 +1,9 @@
+﻿@using VideoData.Models;
+@model List<Genre>
+<p>Klik op het gewenste GENRE</p>
+@{
+    foreach (Genre genre in Model)
+    {
+        <a asp-controller="Home" asp-action="GenreOplijsting" asp-route-id=@genre.GenreId>@genre.GenreNaam</a>
+    }
+}
