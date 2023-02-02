@@ -1,0 +1,36 @@
+﻿@using VideoData.Models;
+@model List<Film>
+
+<h2>Winkelmandje</h2>
+@if (Model != null)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Titel</th>
+                <th>Prijs</th>
+                <th>Verwijderen</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var film in Model)
+            {
+                <tr>
+                    <td>@film.Titel</td>
+                    <td>@film.Prijs.ToString("C")</td>
+                    <td>
+                            <a asp-action="Verwijderen" asp-route-id=@film.FilmId>
+                                <img src="~/Images/delete.png" height=20 alt="Verwijderen" />
+                            </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <form asp-action="GenreMenu" method="get">
+        <input class="btn btn-success btn-lg mt-4" type="submit" value="Verder winkelen" />
+    </form>
+    <form asp-action="Afrekenen" method="get">
+        <input class="btn btn-success btn-lg mt-4" type="submit" value="Afrekenen" />
+    </form>
+}

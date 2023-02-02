@@ -12,5 +12,6 @@ namespace VideoVerhuur.Services
         public Klant? TryLogin(string Naam, string postcode);
         public bool IsAangemeld();
         public void Uitloggen();
+        public void WinkelmandjeLeegmaken();
     }
 }

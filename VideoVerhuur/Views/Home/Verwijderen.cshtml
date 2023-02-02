@@ -1,0 +1,12 @@
+﻿@using VideoData.Models
+@model Film
+<h1>Verwijder gehuurde film</h1>
+<p>"@Model.Titel.ToUpper()" verwijderen uit jouw winkelmandje?</p>
+
+<form asp-action="BevestigVerwijdering" asp-route-id=@Model.FilmId method="post">
+    <input class="btn btn-success btn-lg mt-4"  type="submit" value="Ja" />
+</form>
+
+<form asp-action="WinkelMandje" method="get">
+    <input class="btn btn-danger btn-lg mt-4"  type="submit" value="Nee" />
+</form>

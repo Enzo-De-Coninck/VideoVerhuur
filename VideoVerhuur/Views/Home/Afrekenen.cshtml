@@ -1,0 +1,33 @@
+﻿@using VideoVerhuur.Services
+@model UserService
+
+<h1>Afrekenen</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Titel</th>
+            <th>Prijs</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var film in Model.GetMandje())
+        {
+            <tr>
+                <td>@film.Titel</td>
+                <td>@film.Prijs.ToString("C")</td>
+            </tr>
+        }
+        <tr>
+            <td><b>Totaal<b/></td>
+            <td><b>@Model.GetTotaal().ToString("C")<b/></td>
+        </tr>
+    </tbody>
+</table>
+<p>wordt gefactureerd aan:</p>
+<p>@Model.GetUser()!.Naam.ToUpper()</p>
+<p>@Model.GetUser()!.Straat_Nr.ToUpper()</p>
+<p>@Model.GetUser()!.Gemeente.ToUpper()</p>
+
+<form asp-action="Afmelden" method="get">
+        <input class="btn btn-success btn-lg mt-4" type="submit" value="Terug naar hoofdmenu" />
+    </form>

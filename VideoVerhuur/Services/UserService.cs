@@ -59,5 +59,10 @@ namespace VideoVerhuur.Services
         {
             Winkelmandje.Remove(Winkelmandje.First(film => film.FilmId == id));
         }
+
+        public void WinkelmandjeLeegmaken()
+        {
+            Winkelmandje.Clear();
+        }
     }
 }
