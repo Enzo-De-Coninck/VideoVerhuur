@@ -6,11 +6,11 @@ namespace VideoVerhuur.Services
     {
         public void HuurFilm(Film film);
         public List<Film> GetMandje();
-        public decimal GetTotaal();
+        public Decimal GetTotaal();
         public void VerwijderFilm(int id);
         public Klant? GetUser();
-        public Klant? TryLogin(string Naam, string Postcode);
-        public bool IsIngelogd();
-        public void Logout();
+        public Klant? TryLogin(string Naam, string postcode);
+        public bool IsAangemeld();
+        public void Uitloggen();
     }
 }

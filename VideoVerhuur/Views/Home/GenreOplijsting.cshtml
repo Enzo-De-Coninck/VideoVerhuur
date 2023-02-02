@@ -1,0 +1,38 @@
+﻿@using VideoData.Models;
+@model List<Film>
+@if (Model != null)
+{
+    <h2>@Model[0].Genre.GenreNaam</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Titel</th>
+                <th>Prijs</th>
+                <th>In voorraad</th>
+                <th>Huren</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var film in Model)
+            {
+                <tr>
+                    <td>@film.Titel</td>
+                    <td>@film.Prijs.ToString("C")</td>
+                    <td>@film.InVoorraad</td>
+                    <td>
+                        @if (film.InVoorraad > 0)
+                        {
+                            <a asp-action="Huren" asp-route-id=@film.FilmId>
+                                <img src="~/Images/plus.png" height=20 alt="Huren" />
+                            </a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <form class="form-style-" asp-action="GenreMenu" method="get">
+        <button class="btn btn-success btn-lg mt-4" type="submit">Terug naar genre-overzicht</button>
+    </form>
+}
